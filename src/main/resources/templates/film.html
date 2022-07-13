@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Film')"></head>
+<nav th:replace="fragments::menu"></nav>
+<body>
+<th:block th:if="${film}" th:object="${film}">
+    <h1 th:text="*{titel}"></h1>
+    <dl>
+        <img th:src="@{/images/{id}.jpg(id=*{id})}" alt="*{id}">
+        <dt>Prijs</dt>
+        <dd th:text="*{{prijs}}"></dd>
+        <dt>Voorraad</dt>
+        <dd th:text="*{{voorraad}}"></dd>
+        <dt>Gereserveerd</dt>
+        <dd th:text="*{{gereserveerd}}"></dd>
+        <dt>Beschikbaar</dt>
+        <dd th:text="${beschikbaar}"></dd>
+    </dl>
+    <form method="post" th:action="@{/mandje/{id}(id=*{id})}">
+        <button th:disabled="${beschikbaar eq 0}">in mandje</button>
+    </form>
+</th:block>
+</body>
+</html>

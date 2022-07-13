@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Films Per Genre')"></head>
+<nav th:replace="fragments::menu"></nav>
+<body>
+<h1>Genres</h1>
+<ul class="naastMekaar">
+    <li th:each="genre:${genres}" th:object="${genre}">
+        <a th:href="@{/genre/{naam}(naam=*{naam})}"
+           th:text="*{naam}"></a>
+    </li>
+</ul>
+
+<h2 th:text="${naam}"></h2>
+<ul class="naastMekaar">
+    <li th:each="film:${filmsPerGenre}" th:object="${film}">
+        <a th:href="@{/film/{id}(id=*{filmId})}">
+            <img th:if="*{filmId}" th:src="@{/images/{id}.jpg(id=*{filmId})}" alt="*{filmId}">
+        </a>
+    </li>
+</ul>
+
+<img th:if="*{open} and *{metFriet}" th:src="@{/images/gevonden.png}" alt="gevonden">
+
+</body>
+</html>

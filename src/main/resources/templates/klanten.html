@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Klanten')"></head>
+<nav th:replace="fragments::menuUitgebreid"></nav>
+<body>
+<h1>Klanten</h1>
+<form th:object="${zoekSnackForm}" method="get" th:action="@{/snacks/zoeksnack}">
+    <label>FamilieNaam bevat:
+        <span th:errors="*{beginletters}"></span>
+        <input th:field="*{beginletters}" autofocus type="text" required minlength="1">
+    </label>
+    <button>Zoeken</button>
+</form>
+</body>
+</html>
